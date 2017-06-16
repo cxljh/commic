@@ -55,12 +55,11 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 45%;
+    width: 30%;
     margin: .1rem;
   }
-  section img[data-v-bd6f4514]{
-    width: 35vw;
-    height: 24vh;
+  li img{
+    width: 100%;
   }
   span{
       font-size: .15rem;
@@ -76,6 +75,5 @@ export default {
   position: fixed;
   top: 40px;
   width: 100vw;
-  background: rgba(255, 255, 255, 1)
 }
 </style>

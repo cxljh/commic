@@ -1,52 +1,44 @@
 <template>
     <div id="app">
     <header id="header" class="">
-      <div class="touxiang">
-        <img src="http://img0.imgtn.bdimg.com/it/u=1215645982,1659373920&fm=214&gp=0.jpg" alt="">
-      </div>
+      <div class="touxiang"></div>
       <router-link  to="/login"><mt-button type="primary" size="small">立即登录</mt-button></router-link>
       <router-link to="/register"><mt-button type="default" size="small">快速注册</mt-button>
       </router-link>
     </header>
     <main>
-      <ul>
-        <li>
-          <i class="iconfont icon-bendi"></i>
-          <span>本地漫画</span>
-        </li>
-        <li>
-          <i class="iconfont icon-circularframeshijian"></i>
-          <span>历史观看</span>
-        </li>
-        <li>
-          <i class="iconfont icon-xiazai"></i>
-          <span>下载记录</span>
-        </li>
-        <li>
-          <i class="iconfont icon-yikeapp16"></i>
-          <span>个人中心</span>
-        </li>
-        <li>
-          <i class="iconfont icon-icon-vip"></i>
-          <span>我的vip</span>
-        </li>
-        <li>
-          <i class="iconfont icon-qianbao"></i>
-          <span>我的钱包</span>
-        </li>
-        <li>
-          <i class="iconfont icon-ic_confirmation_number_px"></i>
-          <span>我的门票</span>
-        </li>
-        <li>
-          <i class="iconfont icon-gouwuche"></i>
-          <span>我的订单</span>
-        </li>
-        <li>
-          <i class="iconfont icon-shezhi"></i>
-          <span>设置</span>
-        </li>
-      </ul>
+      <mt-cell title="本地漫画">
+        <img slot="icon" src="../../static/images/1.jpg" width="20" height="21">
+        
+      </mt-cell>
+      <mt-cell title="我的vip">
+        <img slot="icon" src="../../static/images/1.jpg" width="20" height="21">
+        
+      </mt-cell>
+      <mt-cell title="我的钱包">
+        <img slot="icon" src="../../static/images/1.jpg" width="20" height="21">
+        
+      </mt-cell>
+      <mt-cell title="我的收藏">
+        <img slot="icon" src="../../static/images/1.jpg" width="20" height="21">
+        
+      </mt-cell>
+      <mt-cell title="我的缓存">
+        <img slot="icon" src="../../static/images/1.jpg" width="20" height="21">
+        
+      </mt-cell>
+      <mt-cell title="我的订单">
+        <img slot="icon" src="../../static/images/1.jpg" width="20" height="21">
+        
+      </mt-cell>
+      <mt-cell title="夜间模式">
+        <img slot="icon" src="../../static/images/1.jpg" width="20" height="21">
+        <mt-switch v-model="value" @change="getnight"></mt-switch>
+      </mt-cell>
+      <mt-cell title="设置">
+        <img slot="icon" src="../../static/images/1.jpg" width="20" height="21">
+       
+      </mt-cell>
       
     </main>
       
@@ -60,6 +52,9 @@ export default {
   name: 'home',
   data () {
     return {
+      msg: '',
+      arr:"",
+      list:"",
       value:false,
       status:""
     }
@@ -72,7 +67,8 @@ export default {
         this.status = "";
       }
     }
-  } 
+  }
+ 
 }
 </script>
 
@@ -80,9 +76,6 @@ export default {
   *{
     margin: 0;
     padding: 0;
-  }
-  li{
-    list-style: none;
   }
   #app{
     width: 100vw;
@@ -100,12 +93,11 @@ export default {
     align-items: center;
     background: url('http://img4.imgtn.bdimg.com/it/u=2401463050,1544189802&fm=26&gp=0.jpg') no-repeat 100%;
   }
-
   .touxiang{
     width: 70px;
     height: 70px;
     background: #ccc;
-    border-radius: 100%;
+    border-radius: 25px;
   }
   .mint-button--small{
     padding: 0 10px;
@@ -116,28 +108,27 @@ export default {
   a{
     font-size: 14px;
   }
-
-
-  main ul{
-    width: 100%; 
-    padding: 0 .1rem;
-  }
-  main ul li{
-    width: 90%;
-    height: 6vh;
-    font-size: .1rem;
-    border-bottom: 1px solid #bcbcbc;
-    display: flex;
-    align-items: center;
-  }
-  main ul li i{
-    margin: 0 .1rem;
-  }
-  main ul li span{
-    font-size: .2rem;
-  }
-  .touxiang img{
+  .blackbox{
+    position: absolute;
     width: 100%;
-    border-radius: 100%;
+    height: 100vh;
+    background-color: rgba(103, 89, 88, .5)
+
   }
+  main{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+  }
+  mt-cell{
+    width: 100%;
+   
+  }
+  mt-cell img{
+    display: inline-block;
+    float: left;
+    padding-left: 20px;
+  }
+  
 </style>

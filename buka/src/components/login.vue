@@ -8,8 +8,8 @@
         <mt-button >快速注册</mt-button>
       </router-link>
     </mt-header>
-    <mt-field class="mg1" label="手机号" placeholder="请输入手机号" type="tel" v-model="phone"></mt-field>
-    <mt-field label="密码" placeholder="请输入密码" type="password" v-model="password"></mt-field>
+    <mt-field class="mg1" label="手机号" placeholder="请输入手机号" type="tel" ></mt-field>
+    <mt-field label="密码" class="mima" placeholder="请输入密码" type="password" ></mt-field>
     <mt-button class="logining" @click="lin" type="danger" size="large">登录</mt-button>
     
   </div>
@@ -22,19 +22,36 @@ export default {
   name: 'login',
   data () {
     return {
-      msg: '',
-      arr:[],
-      list:"",
-      phone:"",
-      password:""
-
+      msg: ''
     }
   },
   methods:{
     lin(){
-      this.arr = window.location.search.replace(/\?/g,"");
-      console.log(this.arr)
-      
+      var $userName = $(".mg1 .mint-field-core").val();
+      var $password = $(".mima .mint-field-core").val();
+      $.ajax({
+        url: 'http://datainfo.duapp.com/shopdata/userinfo.php',
+        type: 'GET',
+        dataType: '',
+        data: {
+          status: 'login',
+          userID:$userName,
+          password:$password
+        },
+      })
+      .done(function(res) {
+         switch (res) {
+          case "0": alert("你的用户名不存在的");
+            break;
+          case "2": alert("密码不符合");
+            break;
+            default: alert("恭喜你，登录成功");
+        }
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
     }
     
   }
