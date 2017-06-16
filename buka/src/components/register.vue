@@ -8,11 +8,11 @@
         
       </div>
     </mt-header>
-    <mt-field class="userautor" label="手机号"  placeholder="请输入手机号" type="tel"></mt-field>
-    <mt-field class="mima" label="密码"  placeholder="请输入密码" type="password"></mt-field>
-    <mt-field label="确认密码" v-model="list" placeholder="请再次输入密码" type="password"></mt-field>
-    <mt-button class="registering" @click="reg" type="danger" size="large">注册</mt-button>
-    
+    <mt-field label="手机号" v-model="arr.msg" placeholder="请输入手机号" type="tel"></mt-field>
+    <mt-field label="密码" v-model="arr.password" placeholder="请输入密码" type="password"></mt-field>
+    <mt-field label="确认密码" v-model="arr.list" placeholder="请再次输入密码" type="password"></mt-field>
+    <router-link to="/login"><mt-button class="registering" @click="reg" type="danger" size="large">注册</mt-button>
+    </router-link>
   </div>
   
 </template>
@@ -23,46 +23,28 @@ export default {
   name: 'register',
   data () {
     return {
-      user: "",
+      arr:[
+      {msg: "",
       password:"",
-      list:"",
-      art:"",
+      list:""}
+      ],
+      art:[],
 
     }
   },
   methods:{
     reg(){
-      var $userName = $(".userautor .mint-field-core").val();
-      var $password = $(".mima .mint-field-core").val();
-      console.log($password)
-      $.ajax({
-        url: 'http://datainfo.duapp.com/shopdata/userinfo.php',
-        type: 'POST',
-        dataType: '',
-        data: {
-          status: 'register',
-          userID:$userName,
-          password:$password
-        },
-      })
-      .done(function(res) {
-        switch (res) {
-          case "0": alert("重名啦，换个名字吧");
-            break;
-          case "2": alert("数据库出错");
-            break;
-            default: alert("恭喜你，注册成功");
-        }
-        console.log("success");
-      })
-      .fail(function() {
-        console.log("error");
-      })
-      
+      var re = /^[0-9]{11}$/g;
+      var qw = /^[0-9a-zA-Z]{6,12}$/g;
+      if(re.test(this.arr.msg)&&qw.test(this.arr.password)&&this.arr.password == this.arr.list){
+        this.art.push(this.arr[0]);
+        console.log(this.art)
+        console.log(typeof this.art)
+        alert("注册成功");
       }
     }
   }
-
+ }
 </script>
 
 <style scoped>

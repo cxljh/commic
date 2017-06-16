@@ -10,6 +10,7 @@ import Xtx from '@/components/xtx'
 import Classify from '@/components/classify'
 import Comic from '../comic'
 import ComicInfo from '@/components/comicInfo'
+import Watch from '@/components/watch'
 Vue.use(Router)
 
 export default new Router({
@@ -55,6 +56,16 @@ export default new Router({
     },
     {
       path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/watch',
+      name: 'watch',
+      component: Watch
+    },
+    {
+      path: '/login/:id',
       name: 'login',
       component: Login
     },

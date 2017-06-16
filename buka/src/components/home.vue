@@ -2,7 +2,7 @@
     <main>
       <mt-swipe :auto="4000">
         <mt-swipe-item v-for="item in swipeImg">
-          <router-link to="./comicInfo">
+          <router-link :to="{ name: 'comicInfo', params:{id:123}}">
              <img :src="item" alt="" >
           </router-link> 
         </mt-swipe-item>
